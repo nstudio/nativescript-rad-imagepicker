@@ -42,4 +42,8 @@
 
     <style name="NativeScriptToolbarStyle" parent="NativeScriptToolbarStyleBase">
     </style>
+
+    <style name="PixAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+         <item name="android:screenOrientation">portrait</item>
+    </style>
 </resources> 
