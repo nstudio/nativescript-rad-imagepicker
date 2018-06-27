@@ -5,8 +5,10 @@ android {
 repositories {
     jcenter()
     maven { url "https://dl.bintray.com/fxn769/android_projects/" }
+    maven { url "https://dl.bintray.com/wonderkiln/maven/" }
 }
 
 dependencies {
-    compile 'com.fxn769:pix:1.0.9:@aar'
+    compile 'com.wonderkiln:camerakit:0.13.1@aar'
+    compile 'com.fxn769:pix:1.0.8:@aar'
 }
