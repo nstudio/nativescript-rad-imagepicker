@@ -1,6 +1,7 @@
 import { Common, PickerOptions } from './rad-imagepicker.common';
 import * as app from "tns-core-modules/application";
-import * as utils from 'tns-core-modules/utils/utils';
+import * as frame from "tns-core-modules/ui/frame";
+import * as imageSourceModule from 'tns-core-modules/image-source';
 
 declare var com: any;
 const Pix = com.fxn.pix.Pix;
@@ -12,28 +13,32 @@ export class RadImagepicker extends Common {
     }
 
     pick(options: PickerOptions): Promise<Array<any>> {
-
-        const onResult = function(args) {
-            const requestCode = args.requestCode;
-            const resultCode = args.resultCode;
-            const data = args.intent;
-            switch (requestCode) {
-                case (100): {
-                    if (resultCode == android.app.Activity.RESULT_OK) {
-                        const returnValue = data.getStringArrayListExtra(Pix.IMAGE_RESULTS);
-                        console.log(returnValue);
-                    }
-                }
-                break;
-            }
-        }
-        app.android.on(app.AndroidApplication.activityResultEvent, onResult);
-
-        com.fxn.pix.Pix.start(app.android.foregroundActivity, 100, 5);
-
-        // TODO: resolve the promise with image array
         return new Promise((resolve, reject) => {
-            resolve ([]);
+            const onResult = function(args) {
+                const requestCode = args.requestCode;
+                const resultCode = args.resultCode;
+                const data = args.intent;
+                switch (requestCode) {
+                    case (100): {
+                        if (resultCode == android.app.Activity.RESULT_OK) {
+                            const returnValue = data.getStringArrayListExtra(Pix.IMAGE_RESULTS);
+                            const imgArray = returnValue.toArray();
+                            const images = [];
+                            for (let i = 0; i < imgArray.length; i++ ) {
+                                images.push(imgArray[i].toString());
+                            }
+                            resolve(images);
+                        }
+                    }
+                    break;
+                }
+            }
+            app.android.on(app.AndroidApplication.activityResultEvent, onResult);
+
+            let activity = frame.topmost().android.activity;
+            let i = new android.content.Intent(activity, com.fxn.pix.Pix.class);
+            i.putExtra("selection", options.imageLimit);
+            activity.startActivityForResult(i, 100);
         })
     }
 }

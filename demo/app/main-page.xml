@@ -3,9 +3,10 @@
   <GridLayout rows="auto, auto, *" class="p-20">
     <Label row="0" text="Rad Image Picker" class="t-20 text-center c-black" textWrap="true"/>
     <Button row="1" class="btn btn-primary" text="pick image" tap="{{ pickImage }}" />
-    <ListView  row="2" items="{{ images }}"  loaded="onLoaded" itemLoading="onItemLoading" itemTap="onItemTap">
+    <Image src="{{ chamia }}" />
+    <ListView id="listView" row="2" items="{{ images }}">
         <ListView.itemTemplate>
-            <Image src="{{ src }}" />
+          <Image src="{{ src }}" /> 
         </ListView.itemTemplate>
     </ListView>
   </GridLayout>

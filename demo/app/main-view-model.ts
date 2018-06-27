@@ -8,7 +8,6 @@ export class HelloWorldModel extends Observable {
 
   constructor() {
     super();
-
     this.images = new ObservableArray([]);
     this.radImagepicker = new RadImagepicker();
   }
@@ -20,6 +19,7 @@ export class HelloWorldModel extends Observable {
       noImagesTitle: "No images here :(",
       imageLimit: 5
     }
+    
     this.radImagepicker.pick(opts).then((selectedImages) => {
       if (selectedImages) {
         this.images.length = 0;

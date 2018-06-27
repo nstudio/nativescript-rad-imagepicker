@@ -6,9 +6,15 @@ repositories {
     jcenter()
     maven { url "https://dl.bintray.com/fxn769/android_projects/" }
     maven { url "https://dl.bintray.com/wonderkiln/maven/" }
+    maven { url "https://mvnrepository.com/artifact/com.github.bumptech.glide/glide" }
 }
 
+def supportLibraryVersion = '27.1.1'
 dependencies {
-    compile 'com.wonderkiln:camerakit:0.13.1@aar'
+    compile 'com.android.support:appcompat-v7:' + supportLibraryVersion
+    compile 'com.android.support:design:' + supportLibraryVersion
+    compile 'com.wonderkiln:camerakit:0.13.1:@aar'
+    compile group: 'com.github.bumptech.glide', name: 'glide', version: '4.7.1'
     compile 'com.fxn769:pix:1.0.8:@aar'
+    compile 'com.android.support:recyclerview-v7:' + supportLibraryVersion
 }
