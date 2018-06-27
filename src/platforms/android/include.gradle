@@ -1,0 +1,12 @@
+android {
+
+}
+
+repositories {
+    jcenter()
+    maven { url "https://dl.bintray.com/fxn769/android_projects/" }
+}
+
+dependencies {
+    compile 'com.fxn769:pix:1.0.9:@aar'
+}
