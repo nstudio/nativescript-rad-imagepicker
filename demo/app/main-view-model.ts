@@ -3,12 +3,11 @@ import { ObservableArray } from 'tns-core-modules/data/observable-array';
 import { RadImagepicker, PickerOptions } from 'nativescript-rad-imagepicker';
 
 export class HelloWorldModel extends Observable {
-  public images;
+  public images = [];
   private radImagepicker: RadImagepicker;
 
   constructor() {
     super();
-    this.images = new ObservableArray([]);
     this.radImagepicker = new RadImagepicker();
   }
 
@@ -28,6 +27,8 @@ export class HelloWorldModel extends Observable {
             src: selectedImages[i]
           });
         }
+        console.log(this.images);
+        this.set('selectedImages',this.images)
       }
     });
   }
