@@ -1,7 +1,6 @@
-import { Common } from './rad-imagepicker.common';
+import { Common, PickerOptions } from './rad-imagepicker.common';
 import * as frame from "tns-core-modules/ui/frame";
 
-let callbacks: any = {};
 let imagePickerController;
 export class RadImagepicker extends Common {
 
@@ -9,39 +8,54 @@ export class RadImagepicker extends Common {
         super();
     }
 
-    pick(options) {
-        const viewController = frame.topmost().currentPage.ios;
+    pick(options: PickerOptions): Promise<Array<any>> {
+        return new Promise((resolve, reject) => {
+            const viewController = frame.topmost().currentPage.ios;
         
-        imagePickerController = ImagePickerController.new();
+            imagePickerController = ImagePickerController.new();
 
-        const config = Configuration.new();
-        config.doneButtonTitle = "Finish";
-        config.noImagesTitle = "Sorry! There are no images here!";
-        config.recordLocation = false;
-        config.allowVideoSelection = false;
+            const config = Configuration.new();
 
-        imagePickerController.initWithConfiguration(config);
-        imagePickerController.imageLimit = 1;
+            if (options) {
+                if (options.doneButtonTitle) {
+                    config.doneButtonTitle = options.doneButtonTitle;
+                }
+                if (options.noImagesTitle) {
+                    config.noImagesTitle = options.noImagesTitle;
+                }
+                if (options.allowVideoSelection !== undefined) {
+                    config.allowVideoSelection = options.allowVideoSelection;
+                }
+            }
 
-        callbacks.done = options.done;
-        imagePickerController.delegate = new ImagePickerControllerDelegateImpl();
-        viewController.presentViewControllerAnimatedCompletion(imagePickerController, true, null);
+            imagePickerController.initWithConfiguration(config);
+            if (options && options.imageLimit > 0) {
+                imagePickerController.imageLimit = options.imageLimit;
+            }
+
+            imagePickerController.delegate = ImagePickerDelegateImpl.new().initWithCallback((selectedImages) => {
+                resolve(selectedImages);
+            });
+            viewController.presentViewControllerAnimatedCompletion(imagePickerController, true, null);
+        });
     }
 }
 
-export class ImagePickerControllerDelegateImpl extends NSObject implements ImagePickerDelegate {
-
+export class ImagePickerDelegateImpl extends NSObject implements ImagePickerDelegate {
     public static ObjCProtocols = [ImagePickerDelegate];
+    static new(): ImagePickerDelegateImpl {
+        return <ImagePickerDelegateImpl>super.new();
+    }
+    private _callback: (images?) => void;
 
-    private _owner;
-    public static initWithOwner(owner): ImagePickerControllerDelegateImpl {
-        const delegate = <ImagePickerControllerDelegateImpl>ImagePickerControllerDelegateImpl.new();
-        delegate._owner = owner;
-        return delegate;
+    public initWithCallback(callback: (images?) => void): ImagePickerDelegateImpl {
+        this._callback = callback;
+        return this;
     }
 
     cancelButtonDidPress(imagePicker: ImagePickerController): void {
         console.log('user pressed cancel');
+        this._callback();
         const viewController = frame.topmost().currentPage.ios;
         viewController.dismissViewControllerAnimatedCompletion(true, null);
     }    
@@ -52,7 +66,7 @@ export class ImagePickerControllerDelegateImpl extends NSObject implements Image
         for (let i = 0; i < images.count; i++) {
             selectedImages.push(images[i]);
         }
-        callbacks.done(selectedImages);
+        this._callback(selectedImages);
         const viewController = frame.topmost().currentPage.ios;
         viewController.dismissViewControllerAnimatedCompletion(true, null);
     }

@@ -5,3 +5,10 @@ export class Common extends Observable {
     super();
   }
 }
+
+export interface PickerOptions {
+  doneButtonTitle?: string;
+  noImagesTitle?: string;
+  allowVideoSelection?: boolean;
+  imageLimit?: number;
+}
