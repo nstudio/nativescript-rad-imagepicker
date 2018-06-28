@@ -1,7 +1,7 @@
 {
-    "name": "nativescript-rad-imagepicker",
+    "name": "@nstudio/nativescript-rad-imagepicker",
     "version": "1.0.0",
-    "description": "Your awesome NativeScript plugin.",
+    "description": "Whatsapp style imagepicker for NativeScript apps",
     "main": "rad-imagepicker",
     "typings": "index.d.ts",
     "nativescript": {
@@ -32,17 +32,24 @@
         "NativeScript",
         "JavaScript",
         "Android",
-        "iOS"
+        "iOS",
+        "ImagePicker",
+        "WhatsAppPicker"
     ],
     "author": {
-        "name": "Your Name",
-        "email": "youremail@yourdomain.com"
+        "name": "MultiShiv19",
+        "email": "sp@shiv19.com",
+        "url": "https://shiv19.com"
+    },
+    "repository": {
+        "url": "https://github.com/nstudio/nativescript-rad-imagepicker",
+        "type": "git"
     },
     "bugs": {
-        "url": "https://github.com/shiv19/nativescript-rad-imagepicker/issues"
+        "url": "https://github.com/nstudio/nativescript-rad-imagepicker/issues"
     },
     "license": "Apache-2.0",
-    "homepage": "https://github.com/shiv19/nativescript-rad-imagepicker",
+    "homepage": "https://github.com/nstudio/nativescript-rad-imagepicker",
     "readmeFilename": "README.md",
     "devDependencies": {
         "tns-core-modules": "^4.0.0",
@@ -53,6 +60,8 @@
         "tslint": "^5.0.0",
         "semver": "^5.5.0"
     },
-    "dependencies": {},
+    "dependencies": {
+        "nativescript-permissions": "~1.2.3"
+    },
     "bootstrapper": "nativescript-plugin-seed"
 }

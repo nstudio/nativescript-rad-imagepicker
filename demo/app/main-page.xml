@@ -1,12 +1,20 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded" class="page"
   xmlns:ui="nativescript-rad-imagepicker">
-  <GridLayout rows="auto, auto, *" class="p-20">
-    <Label row="0" text="Rad Image Picker" class="t-20 text-center c-black" textWrap="true"/>
-    <Button row="1" class="btn btn-primary" text="pick image" tap="{{ pickImage }}" />
-    <ListView id="listView" row="2" items="{{ selectedImages }}">
-        <ListView.itemTemplate>
-          <Image src="{{ src }}" /> 
-        </ListView.itemTemplate>
-    </ListView>
+  <ActionBar class="action-bar" title="Rad Image Picker"></ActionBar>
+  <GridLayout rows="*, auto" columns="*, auto">
+    <GridLayout id="hint" row="0" rowSpan="2" col="0" colSpan="2">
+        <Label class="text-center" text="Press + to select Images!" textWrap="true" verticalAlignment="center"/>
+    </GridLayout>
+    <ScrollView row="0" rowSpan="2" col="0" colSpan="2">
+      <Repeater separatorColor="transparent" id="repeaterView" row="1">
+          <Repeater.itemsLayout>
+            <FlexboxLayout flexDirection="row" flexWrap="wrap" alignSelf="center" />
+          </Repeater.itemsLayout>
+          <Repeater.itemTemplate>
+            <Image src="{{ source }}" width="{{ $parents['Repeater'].imageWidth }}" height="100" stretch="aspectFill" /> 
+          </Repeater.itemTemplate>
+      </Repeater>
+    </ScrollView>
+    <Button borderRadius="50" fontSize="18" height="50" width="50" row="1" col="1" class="btn btn-primary" text="+" tap="{{ pickImage }}" />
   </GridLayout>
 </Page>

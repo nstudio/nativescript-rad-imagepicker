@@ -1,13 +1,25 @@
+import { RadImagepicker, PickerOptions } from 'nativescript-rad-imagepicker';
 import { Observable } from 'tns-core-modules/data/observable';
 import { ObservableArray } from 'tns-core-modules/data/observable-array';
-import { RadImagepicker, PickerOptions } from 'nativescript-rad-imagepicker';
+import { topmost } from 'tns-core-modules/ui/frame';
+import { Repeater } from 'tns-core-modules/ui/repeater';
+import { screen } from "tns-core-modules/platform";
+
 
 export class HelloWorldModel extends Observable {
-  public images = [];
+  public images = new ObservableArray([]);
   private radImagepicker: RadImagepicker;
+  public imageWidth;
+  public hideHint = false;
 
   constructor() {
     super();
+
+    if (screen.mainScreen.widthDIPs >= 350) {
+      this.imageWidth = screen.mainScreen.widthDIPs / 4;
+    } else {
+      this.imageWidth = screen.mainScreen.widthDIPs / 3;
+    }
     this.radImagepicker = new RadImagepicker();
   }
 
@@ -24,11 +36,14 @@ export class HelloWorldModel extends Observable {
         this.images.length = 0;
         for (let i = 0; i < selectedImages.length; i++) {
           this.images.push({
-            src: selectedImages[i]
+            source: selectedImages[i]
           });
         }
-        console.log(this.images);
-        this.set('selectedImages',this.images)
+        
+        const repeaterView: Repeater = topmost().getViewById('repeaterView');
+        repeaterView.items = this.images;
+
+        (<any> topmost().getViewById('hint')).visibility = 'collapse';
       }
     });
   }
