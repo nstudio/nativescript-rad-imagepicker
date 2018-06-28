@@ -13,30 +13,39 @@ tns plugin add @nstudio/nativescript-rad-imagepicker
 
 ## Usage 
 	
-	```javascript
-        const RadImagepicker = require('nativescript-rad-imagepicker').RadImagepicker;
-        const PickerOptions = require('nativescript-rad-imagepicker').PickerOptions;
-        const radImagepicker = new RadImagepicker();
-        radImagepicker.pick(opts).then((selectedImages) => {
-            if (selectedImages) {
-                // Do something with selected images
-                // currently 
-                // ios returns array UI image
-                // android returns array of file paths
-            }
-        });
-    ```)
+```javascript
+const RadImagepicker = require('nativescript-rad-imagepicker').RadImagepicker;
+const PickerOptions = require('nativescript-rad-imagepicker').PickerOptions;
+const radImagepicker = new RadImagepicker();
+radImagepicker.pick(opts).then((selectedImages) => {
+    if (selectedImages) {
+        // Do something with selected images
+        // currently 
+        // ios returns array UI image
+        // android returns array of file paths
+    }
+});
+```
 
 ## API
 
+Following picker options are available
 ```javascript
-    PickerOptions {
-        doneButtonTitle?: string; // only affects ios
-        noImagesTitle?: string; // only affects ios
-        allowVideoSelection?: boolean; // only affects ios
-        imageLimit?: number;
-    }
+PickerOptions {
+    doneButtonTitle?: string; // only affects ios
+    noImagesTitle?: string; // only affects ios
+    allowVideoSelection?: boolean; // only affects ios
+    imageLimit?: number;
+}
 ```
+
+Picker api
+```javascript
+pick(options: PickerOptions): Promise<Array<any>>;
+```
+
+When the promise resolves, you will get array of image url on android,
+and array of UI Image on iOS.
 
 ### Theming
 
@@ -73,9 +82,9 @@ Add these to info.plist, you can add more descriptive message here
 
 ----
 
-Made With ♥️ for {N} Community by nStudio
+Made With ♥️ for {N} Community by [nStudio](https://nstudio.io)
 
-Special Thanks to Richard Smith and Osie Fortune :)
+Special Thanks to [Richard Smith](https://github.com/dicksmith) and [Osie Fortune](https://github.com/triniwiz) :)
     
 ## License
 
