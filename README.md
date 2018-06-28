@@ -84,7 +84,7 @@ Add these to info.plist, you can add more descriptive message here
 
 Made With ♥️ for {N} Community by [nStudio](https://nstudio.io)
 
-Special Thanks to [Richard Smith](https://github.com/dicksmith) and [Osie Fortune](https://github.com/triniwiz) :)
+Special Thanks to [Richard Smith](https://github.com/dicksmith) and [Osei Fortune](https://github.com/triniwiz) :)
     
 ## License
 
