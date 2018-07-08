@@ -14,8 +14,8 @@ tns plugin add @nstudio/nativescript-rad-imagepicker
 ## Usage 
 	
 ```javascript
-const RadImagepicker = require('nativescript-rad-imagepicker').RadImagepicker;
-const PickerOptions = require('nativescript-rad-imagepicker').PickerOptions;
+const RadImagepicker = require('@nstudio/nativescript-rad-imagepicker').RadImagepicker;
+const PickerOptions = require('@nstudio/nativescript-rad-imagepicker').PickerOptions;
 const radImagepicker = new RadImagepicker();
 radImagepicker.pick(opts).then((selectedImages) => {
     if (selectedImages) {
