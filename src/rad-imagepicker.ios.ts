@@ -1,7 +1,23 @@
 import { Common, PickerOptions } from './rad-imagepicker.common';
 import * as frame from "tns-core-modules/ui/frame";
+import * as imageSource from "tns-core-modules/image-source";
 
 let imagePickerController;
+declare var NSDocumentDirectory;
+declare var NSUserDomainMask;
+
+function createImageSourceFromUIImage(image) {
+    const paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                        NSUserDomainMask, true);
+    const documentsDirectory = paths.objectAtIndex(0)
+    const documentsDirectoryNSString = NSString.stringWithString(documentsDirectory);
+    const path = documentsDirectoryNSString.stringByAppendingPathComponent("status.jpeg");
+    const data = UIImagePNGRepresentation(image);
+    data.writeToFileAtomically(path, true);
+
+    return imageSource.fromFile(path);
+}
+
 export class RadImagepicker extends Common {
 
     constructor() {
@@ -64,7 +80,7 @@ export class ImagePickerDelegateImpl extends NSObject implements ImagePickerDele
         console.log('user pressed done');
         let selectedImages = [];
         for (let i = 0; i < images.count; i++) {
-            selectedImages.push(images[i]);
+            selectedImages.push(createImageSourceFromUIImage(images[i]));
         }
         this._callback(selectedImages);
         const viewController = frame.topmost().currentPage.ios;

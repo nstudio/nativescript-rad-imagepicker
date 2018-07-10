@@ -2,6 +2,7 @@ import { Common, PickerOptions } from './rad-imagepicker.common';
 import * as app from "tns-core-modules/application";
 import * as frame from "tns-core-modules/ui/frame";
 import * as permissions from "nativescript-permissions";
+import * as imageSource from "tns-core-modules/image-source";
 
 declare var com: any;
 const Pix = com.fxn.pix.Pix;
@@ -39,7 +40,7 @@ export class RadImagepicker extends Common {
                                     const imgArray = returnValue.toArray();
                                     const images = [];
                                     for (let i = 0; i < imgArray.length; i++ ) {
-                                        images.push(imgArray[i].toString());
+                                        images.push(imageSource.fromFile(imgArray[i].toString()));
                                     }
                                     resolve(images);
                                 }

@@ -21,8 +21,8 @@ radImagepicker.pick(opts).then((selectedImages) => {
     if (selectedImages) {
         // Do something with selected images
         // currently 
-        // ios returns array UI image
-        // android returns array of file paths
+        // the image will be of type nativescript image source
+        // tns-core-modules/image-source
     }
 });
 ```
@@ -44,8 +44,7 @@ Picker api
 pick(options: PickerOptions): Promise<Array<any>>;
 ```
 
-When the promise resolves, you will get array of image url on android,
-and array of UI Image on iOS.
+When the promise resolves, you will get array of imageSource
 
 ### Theming
 

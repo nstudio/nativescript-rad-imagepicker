@@ -1,4 +1,6 @@
-import { RadImagepicker, PickerOptions } from 'nativescript-rad-imagepicker';
+import { RadImagepicker, PickerOptions } from 'nativescript-rad-imagepicker'; 
+// use @nstudio/nativescript-rad-imagepicker when you install this plugin in your project
+
 import { Observable } from 'tns-core-modules/data/observable';
 import { ObservableArray } from 'tns-core-modules/data/observable-array';
 import { topmost } from 'tns-core-modules/ui/frame';
