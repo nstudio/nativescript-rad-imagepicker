@@ -13,6 +13,7 @@ def supportLibraryVersion = '27.1.1'
 dependencies {
     compile 'com.android.support:appcompat-v7:' + supportLibraryVersion
     compile 'com.android.support:design:' + supportLibraryVersion
+    compile 'com.android.support:exifinterface' + supportLibraryVersion
     compile 'com.wonderkiln:camerakit:0.13.1:@aar'
     compile group: 'com.github.bumptech.glide', name: 'glide', version: '4.7.1'
     compile 'com.fxn769:pix:1.0.8:@aar'
