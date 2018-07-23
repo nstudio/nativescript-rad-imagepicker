@@ -1,12 +1,9 @@
-import { RadImagepicker, PickerOptions } from 'nativescript-rad-imagepicker'; 
-// use @nstudio/nativescript-rad-imagepicker when you install this plugin in your project
-
-import { Observable } from 'tns-core-modules/data/observable';
-import { ObservableArray } from 'tns-core-modules/data/observable-array';
-import { topmost } from 'tns-core-modules/ui/frame';
-import { Repeater } from 'tns-core-modules/ui/repeater';
+import { PickerOptions, RadImagepicker } from "@nstudio/nativescript-rad-imagepicker";
+import { Observable } from "tns-core-modules/data/observable";
+import { ObservableArray } from "tns-core-modules/data/observable-array";
 import { screen } from "tns-core-modules/platform";
-
+import { topmost } from "tns-core-modules/ui/frame";
+import { Repeater } from "tns-core-modules/ui/repeater";
 
 export class HelloWorldModel extends Observable {
   public images = new ObservableArray([]);
@@ -26,14 +23,14 @@ export class HelloWorldModel extends Observable {
   }
 
   pickImage() {
-    var opts: PickerOptions = {
+    const opts: PickerOptions = {
       doneButtonTitle: "Finish",
       allowVideoSelection: false,
       noImagesTitle: "No images here :(",
       imageLimit: 5
-    }
-    
-    this.radImagepicker.pick(opts).then((selectedImages) => {
+    };
+
+    this.radImagepicker.pick(opts).then(selectedImages => {
       if (selectedImages) {
         this.images.length = 0;
         for (let i = 0; i < selectedImages.length; i++) {
@@ -41,8 +38,8 @@ export class HelloWorldModel extends Observable {
             source: selectedImages[i]
           });
         }
-        
-        const repeaterView: Repeater = topmost().getViewById('repeaterView');
+
+        const repeaterView: Repeater = topmost().getViewById("repeaterView");
         repeaterView.items = this.images;
 
         (<any> topmost().getViewById('hint')).visibility = 'collapse';
