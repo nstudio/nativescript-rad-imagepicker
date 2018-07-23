@@ -43,6 +43,8 @@ export class RadImagepicker extends Common {
                                         images.push(imageSource.fromFile(imgArray[i].toString()));
                                     }
                                     resolve(images);
+                                } else if (resultCode == android.app.Activity.RESULT_CANCELED) {
+                                    resolve();
                                 }
                             }
                             break;

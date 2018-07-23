@@ -46,6 +46,8 @@ export class HelloWorldModel extends Observable {
         repeaterView.items = this.images;
 
         (<any> topmost().getViewById('hint')).visibility = 'collapse';
+      } else {
+        console.log('User pressed cancel');
       }
     });
   }
