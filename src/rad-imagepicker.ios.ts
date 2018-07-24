@@ -6,12 +6,13 @@ let imagePickerController;
 declare var NSDocumentDirectory;
 declare var NSUserDomainMask;
 
-function createImageSourceFromUIImage(image) {
+function createImageSourceFromUIImage(image, i) {
     const paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                         NSUserDomainMask, true);
     const documentsDirectory = paths.objectAtIndex(0)
     const documentsDirectoryNSString = NSString.stringWithString(documentsDirectory);
-    const path = documentsDirectoryNSString.stringByAppendingPathComponent("status.jpeg");
+    const ms = new Date().getMilliseconds();
+    const path = documentsDirectoryNSString.stringByAppendingPathComponent(`status${i}-${ms}.jpeg`);
     const data = UIImagePNGRepresentation(image);
     data.writeToFileAtomically(path, true);
 
@@ -50,6 +51,7 @@ export class RadImagepicker extends Common {
             }
 
             imagePickerController.delegate = ImagePickerDelegateImpl.new().initWithCallback((selectedImages) => {
+                imagePickerController = null;
                 resolve(selectedImages);
             });
             viewController.presentViewControllerAnimatedCompletion(imagePickerController, true, null);
@@ -70,17 +72,15 @@ export class ImagePickerDelegateImpl extends NSObject implements ImagePickerDele
     }
 
     cancelButtonDidPress(imagePicker: ImagePickerController): void {
-        console.log('user pressed cancel');
         this._callback();
         const viewController = frame.topmost().currentPage.ios;
         viewController.dismissViewControllerAnimatedCompletion(true, null);
     }    
     
     doneButtonDidPressImages(imagePicker: ImagePickerController, images: NSArray<UIImage>): void {
-        console.log('user pressed done');
         let selectedImages = [];
         for (let i = 0; i < images.count; i++) {
-            selectedImages.push(createImageSourceFromUIImage(images[i]));
+            selectedImages.push(createImageSourceFromUIImage(images[i], i));
         }
         this._callback(selectedImages);
         const viewController = frame.topmost().currentPage.ios;
@@ -88,7 +88,6 @@ export class ImagePickerDelegateImpl extends NSObject implements ImagePickerDele
     }
 
     wrapperDidPressImages(imagePicker: ImagePickerController, images: NSArray<UIImage>): void {
-        console.log('user tapped on images');
         const viewController = frame.topmost().currentPage.ios;
         if (images.count < 1) {
             viewController.dismissViewControllerAnimatedCompletion(true, null);

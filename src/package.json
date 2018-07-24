@@ -1,6 +1,6 @@
 {
   "name": "@nstudio/nativescript-rad-imagepicker",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Whatsapp style imagepicker for NativeScript apps",
   "main": "rad-imagepicker",
   "typings": "index.d.ts",
