@@ -1,8 +1,7 @@
+import * as app from "@nativescript/core/application";
 import { Common, PickerOptions } from './rad-imagepicker.common';
-import * as app from "tns-core-modules/application";
-import * as frame from "tns-core-modules/ui/frame";
+import { Frame, ImageSource } from "@nativescript/core";
 import * as permissions from "nativescript-permissions";
-import * as imageSource from "tns-core-modules/image-source";
 
 declare var com: any;
 const Pix = com.fxn.pix.Pix;
@@ -40,11 +39,11 @@ export class RadImagepicker extends Common {
                                     const imgArray = returnValue.toArray();
                                     const images = [];
                                     for (let i = 0; i < imgArray.length; i++ ) {
-                                        images.push(imageSource.fromFile(imgArray[i].toString()));
+                                        images.push( ImageSource.fromFile(imgArray[i].toString()));
                                     }
                                     resolve(images);
                                 } else if (resultCode == android.app.Activity.RESULT_CANCELED) {
-                                    resolve();
+                                    resolve(undefined);
                                 }
                             }
                             break;
@@ -52,7 +51,7 @@ export class RadImagepicker extends Common {
                     }
                     app.android.on(app.AndroidApplication.activityResultEvent, onResult);
         
-                    let activity = frame.topmost().android.activity;
+                    let activity = Frame.topmost().android.activity;
                     let i = new android.content.Intent(activity, com.fxn.pix.Pix.class);
                     i.putExtra("selection", options.imageLimit);
         

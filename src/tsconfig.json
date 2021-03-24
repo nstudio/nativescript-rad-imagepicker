@@ -1,26 +1,33 @@
 {
     "compilerOptions": {
-        "target": "es5",
-        "module": "commonjs",
-        "declaration": true,
+        "target": "es2017",
+        "module": "esnext",
+        "moduleResolution": "node",
         "removeComments": true,
-        "noLib": false,
-        "emitDecoratorMetadata": true,
+        "declaration": false,
         "experimentalDecorators": true,
-        "lib": ["es6", "dom"],
         "sourceMap": true,
-        "pretty": true,
+        "skipLibCheck": true,
+        "noLib": false,
+        "noEmitHelpers": true,
         "allowUnreachableCode": false,
         "allowUnusedLabels": false,
-        "noEmitHelpers": true,
         "noEmitOnError": false,
         "noImplicitAny": false,
         "noImplicitReturns": true,
         "noImplicitUseStrict": false,
-        "noFallthroughCasesInSwitch": true
+        "noFallthroughCasesInSwitch": true,
+        "lib": ["es2017", "dom", "es6"],
+        "baseUrl": ".",
+        "plugins": [
+          {
+            "transform": "@nativescript/webpack/transformers/ns-transform-native-classes",
+            "type": "raw"
+          }
+        ]
     },
     "exclude": [
-        "node_modules"
+        "node_modules", "platforms", "typings/android.d.ts", "typings/objc!ImagePicker.d.ts", "typings/objc!Lightbox.d.ts"
     ],
-    "compileOnSave": false
+    "compileOnSave": false,
 }
