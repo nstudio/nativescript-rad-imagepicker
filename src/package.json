@@ -1,23 +1,22 @@
 {
   "name": "@nstudio/nativescript-rad-imagepicker",
-  "version": "2.0.4",
+  "version": "2.0.8",
   "description": "Whatsapp style imagepicker for NativeScript apps",
   "main": "rad-imagepicker",
   "typings": "index.d.ts",
   "nativescript": {
     "platforms": {
-      "android": "4.0.0",
-      "ios": "4.0.0"
+      "android": "7.0.0",
+      "ios": "7.0.0"
     }
   },
   "scripts": {
-    "tsc": "tsc -skipLibCheck",
-    "build": "npm i && tsc && npm run build.native",
+    "build": "npm i && ts-patch install && tsc && npm run build.native",
     "build.native": "node scripts/build-native.js",
     "postclone": "npm i && node scripts/postclone.js && cd ../demo && npm i && cd ../src && npm run plugin.link",
     "test.android": "npm i && npm run tsc && npm run tslint && cd ../demo && tns build android && tns test android --justlaunch",
     "test.ios": "npm i && npm run tsc && npm run tslint && cd ../demo && tns build ios && tns test ios --justlaunch",
-    "tslint": "cd .. && tslint \"**/*.ts\" --config tslint.json --exclude \"**/node_modules/**\"",
+    "tslint": "cd .. && tslint \"**/*.ts\" --config tslint.json --exclude \"**/node_modules/**\" --exclude \"*demo*/platforms/**\" --exclude \"**/typings/**\"",
     "plugin.link": "npm link && cd ../demo && npm link nativescript-rad-imagepicker && cd ../src",
     "plugin.tscwatch": "npm run tsc -- -w",
     "demo.ios": "npm i && npm run tsc && cd ../demo && tns run ios --syncAllFiles",
@@ -47,16 +46,22 @@
   "license": "Apache-2.0",
   "homepage": "https://github.com/nstudio/nativescript-rad-imagepicker",
   "devDependencies": {
-    "tns-core-modules": "^4.0.0",
-    "tns-platform-declarations": "^4.0.0",
-    "typescript": "~2.7.2",
+    "@nativescript/core": "~7.0.3",
+    "@nativescript/types": "~7.0.3",
+    "@nativescript/webpack": "~3.0.4",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "ng-packagr": "~10.1.0",
+    "prettier": "^2.0.5",
     "prompt": "^1.0.0",
-    "rimraf": "^2.5.0",
-    "tslint": "^5.0.0",
-    "semver": "^5.5.0"
+    "rimraf": "^2.6.3",
+    "tslint": "~6.0.0",
+    "ts-patch": "^1.3.0",
+    "ts-node": "~9.0.0",
+    "typescript": "~3.9.7"
   },
   "dependencies": {
-    "nativescript-permissions": "~1.2.3"
+    "nativescript-permissions": "~1.3.11"
   },
   "bootstrapper": "nativescript-plugin-seed"
 }

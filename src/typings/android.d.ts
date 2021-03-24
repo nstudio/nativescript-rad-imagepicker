@@ -173,13 +173,13 @@ declare module com {
 	}
 }
 
-import androidsupportv4appFragment = android.support.v4.app.Fragment;
-import androidsupportv4appFragmentActivity = android.support.v4.app.FragmentActivity;
+import androidsupportv4appFragment = androidx.fragment.app.Fragment;
+import androidsupportv4appFragmentActivity = androidx.fragment.app.FragmentActivity;
 import androidosBundle = android.os.Bundle;
 import androidviewMotionEvent = android.view.MotionEvent;
 /// <reference path="./android.os.Bundle.d.ts" />
-/// <reference path="./android.support.v4.app.Fragment.d.ts" />
-/// <reference path="./android.support.v4.app.FragmentActivity.d.ts" />
+/// <reference path="./androidx.fragment.app.Fragment.d.ts" />
+/// <reference path="./androidx.fragment.app.FragmentActivity.d.ts" />
 /// <reference path="./android.view.MotionEvent.d.ts" />
 /// <reference path="./android.view.View.d.ts" />
 declare module com {
@@ -223,7 +223,7 @@ declare module com {
 import androidgraphicsCanvas = android.graphics.Canvas;
 /// <reference path="./android.content.Context.d.ts" />
 /// <reference path="./android.graphics.Canvas.d.ts" />
-/// <reference path="./android.support.v7.widget.RecyclerView.d.ts" />
+/// <reference path="./androidx.recyclerview.widget.RecyclerView.d.ts" />
 /// <reference path="./android.view.View.d.ts" />
 declare module com {
 	export module fxn {
@@ -268,8 +268,8 @@ declare module com {
 	}
 }
 
-/// <reference path="./android.support.v4.app.Fragment.d.ts" />
-/// <reference path="./android.support.v4.app.FragmentActivity.d.ts" />
+/// <reference path="./androidx.fragment.app.Fragment.d.ts" />
+/// <reference path="./androidx.fragment.app.FragmentActivity.d.ts" />
 /// <reference path="./com.fxn.interfaces.WorkFinish.d.ts" />
 declare module com {
 	export module fxn {
@@ -296,7 +296,7 @@ declare module com {
 	}
 }
 
-import androidsupportv7appAppCompatActivity = android.support.v7.app.AppCompatActivity;
+import androidsupportv7appAppCompatActivity = androidx.appcompat.app.AppCompatActivity;
 import androidappActivity = android.app.Activity;
 import javautilCalendar = java.util.Calendar;
 import androidviewViewPropertyAnimator = android.view.ViewPropertyAnimator;
@@ -308,7 +308,7 @@ import javalangLong = java.lang.Long;
 /// <reference path="./android.content.Context.d.ts" />
 /// <reference path="./android.database.Cursor.d.ts" />
 /// <reference path="./android.graphics.Bitmap.d.ts" />
-/// <reference path="./android.support.v7.app.AppCompatActivity.d.ts" />
+/// <reference path="./androidx.appcompat.app.AppCompatActivity.d.ts" />
 /// <reference path="./android.support.v7.widget.RecyclerView.d.ts" />
 /// <reference path="./android.view.View.d.ts" />
 /// <reference path="./android.view.ViewPropertyAnimator.d.ts" />

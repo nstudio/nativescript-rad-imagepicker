@@ -1,9 +1,6 @@
 import { PickerOptions, RadImagepicker } from "@nstudio/nativescript-rad-imagepicker";
-import { Observable } from "tns-core-modules/data/observable";
-import { ObservableArray } from "tns-core-modules/data/observable-array";
-import { screen } from "tns-core-modules/platform";
-import { topmost } from "tns-core-modules/ui/frame";
-import { Repeater } from "tns-core-modules/ui/repeater";
+import { Observable, ObservableArray, Screen, Frame } from "@nativescript/core";
+import { Repeater } from "@nativescript/core/ui";
 
 export class HelloWorldModel extends Observable {
   public images = new ObservableArray([]);
@@ -14,10 +11,10 @@ export class HelloWorldModel extends Observable {
   constructor() {
     super();
 
-    if (screen.mainScreen.widthDIPs >= 350) {
-      this.imageWidth = screen.mainScreen.widthDIPs / 4;
+    if (Screen.mainScreen.widthDIPs >= 350) {
+      this.imageWidth = Screen.mainScreen.widthDIPs / 4;
     } else {
-      this.imageWidth = screen.mainScreen.widthDIPs / 3;
+      this.imageWidth = Screen.mainScreen.widthDIPs / 3;
     }
     this.radImagepicker = new RadImagepicker();
   }
@@ -39,10 +36,10 @@ export class HelloWorldModel extends Observable {
           });
         }
 
-        const repeaterView: Repeater = topmost().getViewById("repeaterView");
+        const repeaterView: Repeater = Frame.topmost().getViewById("repeaterView");
         repeaterView.items = this.images;
 
-        (<any> topmost().getViewById('hint')).visibility = 'collapse';
+        (<any> Frame.topmost().getViewById('hint')).visibility = 'collapse';
       } else {
         console.log('User pressed cancel');
       }

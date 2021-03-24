@@ -22,7 +22,7 @@ radImagepicker.pick(opts).then((selectedImages) => {
         // Do something with selected images
         // currently 
         // the image will be of type nativescript image source
-        // tns-core-modules/image-source
+        // @nativescript/core/ui/image-source
     }
 });
 ```
